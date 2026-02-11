@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOUISBARBER</title>
+    <!-- Utilizando Tailwind CSS para um design moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        /* Padronagem clássica de barbearia em azul e vermelho */
+        .barber-stripe {
+            background: repeating-linear-gradient(
+                45deg,
+                #ef4444,
+                #ef4444 20px,
+                #ffffff 20px,
+                #ffffff 40px,
+                #3b82f6 40px,
+                #3b82f6 60px,
+                #ffffff 60px,
+                #ffffff 80px
+            );
+        }
+
+        /* Estilização dos cards de serviço */
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Animação para revelação do preço */
+        .price-tag {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .price-tag.active {
+            max-height: 120px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+
+        /* Estilo dos ícones ilustrados (SVG) */
+        .illustration-container svg {
+            width: 100px;
+            height: 100px;
+            fill: #1e293b;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .illustration-container svg {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Faixa Decorativa Superior -->
+    <div class="h-4 barber-stripe w-full shadow-md"></div>
+
+    <!-- Cabeçalho (Header) -->
+    <header class="py-16 px-4 text-center">
+        <h1 class="text-6xl md:text-9xl font-black italic tracking-tighter text-slate-900 mb-4">
+            LOUIS<span class="text-blue-600">BARBER</span>
+        </h1>
+        <div class="w-32 h-1.5 bg-red-600 mx-auto rounded-full"></div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow container mx-auto px-6 pb-24 max-w-6xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            
+            <!-- Card: Corte de Cabelo -->
+            <div class="service-card bg-white rounded-3xl p-10 shadow-2xl border-b-8 border-blue-600 text-center" onclick="togglePrice(this)">
+                <div class="illustration-container mb-8 flex justify-center">
+                    <!-- Ilustração Cartoon: Tesoura e Pente -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19,2L14,7.09V11.5L12,13.5L10,11.5V7.09L5,2L3,3L8,8.09V12.5L3,17.5L4,19L12,15L20,19L21,17.5L16,12.5V8.09L21,3L19,2Z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-black text-slate-800 uppercase italic">Corte de Cabelo</h2>
+                <p class="text-slate-400 mt-3 text-sm font-medium tracking-wide">CLIQUE PARA VER O VALOR</p>
+                <div class="price-tag">
+                    <span class="text-4xl font-black text-blue-600">$35,00</span>
+                </div>
+            </div>
+
+            <!-- Card: Corte de Barba -->
+            <div class="service-card bg-white rounded-3xl p-10 shadow-2xl border-b-8 border-red-500 text-center" onclick="togglePrice(this)">
+                <div class="illustration-container mb-8 flex justify-center">
+                    <!-- Ilustração Cartoon: Navalha/Barba -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,18C14.21,18 16,16.21 16,14C16,11.79 14.21,10 12,10C9.79,10 8,11.79 8,14C8,16.21 9.79,18 12,18Z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-black text-slate-800 uppercase italic">Corte de Barba</h2>
+                <p class="text-slate-400 mt-3 text-sm font-medium tracking-wide">CLIQUE PARA VER O VALOR</p>
+                <div class="price-tag">
+                    <span class="text-4xl font-black text-red-500">$20,00</span>
+                </div>
+            </div>
+
+            <!-- Card: Ajuste de Sobrancelha -->
+            <div class="service-card bg-white rounded-3xl p-10 shadow-2xl border-b-8 border-blue-600 text-center" onclick="togglePrice(this)">
+                <div class="illustration-container mb-8 flex justify-center">
+                    <!-- Ilustração Cartoon: Pinça/Precisão -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-black text-slate-800 uppercase italic">Ajuste de Sobrancelha</h2>
+                <p class="text-slate-400 mt-3 text-sm font-medium tracking-wide">CLIQUE PARA VER O VALOR</p>
+                <div class="price-tag">
+                    <span class="text-4xl font-black text-blue-600">$10,00</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Rodapé (Footer) -->
+    <footer class="mt-auto py-8 bg-slate-900 text-slate-400 text-center text-xs tracking-[0.3em] font-bold uppercase">
+        LOUISBARBER &copy; 2024 • Todos os direitos reservados
+    </footer>
+
+    <!-- Lógica de Interatividade -->
+    <script>
+        function togglePrice(element) {
+            const priceTag = element.querySelector('.price-tag');
+            const helperText = element.querySelector('p');
+            
+            // Verifica se o preço já está visível
+            if (priceTag.classList.contains('active')) {
+                priceTag.classList.remove('active');
+                helperText.innerText = 'CLIQUE PARA VER O VALOR';
+            } else {
+                // Fecha outros preços que possam estar abertos antes de abrir o novo
+                document.querySelectorAll('.price-tag').forEach(tag => {
+                    tag.classList.remove('active');
+                    tag.previousElementSibling.innerText = 'CLIQUE PARA VER O VALOR';
+                });
+                
+                // Ativa o preço do card clicado
+                priceTag.classList.add('active');
+                helperText.innerText = 'VALOR ATUAL:';
+            }
+        }
+    </script>
+</body>
+</html>
